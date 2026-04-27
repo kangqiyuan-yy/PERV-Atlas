@@ -1,0 +1,21 @@
+genome.ref/
+genome.ref.guochao/
+Multi-omics/
+
+# Generated indexes / caches
+data/
+__pycache__/
+*.pyc
+
+# Local Python environment
+.venv/
+
+# Runtime / logs / pid
+perv.log
+.perv.pid
+
+# Local packaging artifact
+perv-atlas.tar.gz
+
+# OS junk
+.DS_Store

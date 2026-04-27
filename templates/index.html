@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">
+          <span class="pulse"></span>
+          <span data-i18n="home.eyebrow">Porcine endogenous retrovirus atlas</span>
+        </span>
+        <h1 data-i18n="home.hero.title">Browse intact PERV sequences</h1>
+        <p class="lede" data-i18n="home.hero.desc">Description...</p>
+        <div class="hero-cta">
+          <a class="btn primary-onhero" href="{{ url_for('page_overview') }}">
+            <span data-i18n="home.hero.cta1">Open overview</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a class="btn ghost-onhero" href="{{ url_for('page_genome') }}">
+            <span data-i18n="home.hero.cta2">Genome browser</span>
+          </a>
+        </div>
+
+        <div class="hero-kpis" id="hero-kpis">
+          <div class="hero-kpi"><div class="v" id="kpi-total">1,165</div><div class="l" data-i18n="home.kpi.total">Intact PERVs</div></div>
+          <div class="hero-kpi"><div class="v" id="kpi-gamma">1,020</div><div class="l">γ.ERV</div></div>
+          <div class="hero-kpi"><div class="v" id="kpi-beta">145</div><div class="l">β.ERV</div></div>
+          <div class="hero-kpi"><div class="v" id="kpi-anno">139</div><div class="l" data-i18n="home.kpi.anno">Fully annotated</div></div>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+        <svg class="dna" viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="strandA" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#22d3ee"/>
+              <stop offset="100%" stop-color="#a78bfa"/>
+            </linearGradient>
+            <linearGradient id="strandB" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f472b6"/>
+              <stop offset="100%" stop-color="#60a5fa"/>
+            </linearGradient>
+          </defs>
+          <g transform="translate(180,180)">
+            {% for i in range(21) %}
+              {% set y = -160 + i * 16 %}
+              <line x1="-86" y1="{{ y }}" x2="86" y2="{{ y }}"
+                    stroke="rgba(186,230,253,0.32)" stroke-width="1"/>
+            {% endfor %}
+            <path d="M -90 -160 Q 90 -120 -90 -80 Q 90 -40 -90 0 Q 90 40 -90 80 Q 90 120 -90 160"
+                  fill="none" stroke="url(#strandA)" stroke-width="3.4" stroke-linecap="round"/>
+            <path d="M 90 -160 Q -90 -120 90 -80 Q -90 -40 90 0 Q -90 40 90 80 Q -90 120 90 160"
+                  fill="none" stroke="url(#strandB)" stroke-width="3.4" stroke-linecap="round"/>
+            {% for i in range(11) %}
+              {% set y = -160 + i * 32 %}
+              <circle cx="-90" cy="{{ y }}" r="4" fill="#22d3ee"/>
+              <circle cx="90" cy="{{ y }}" r="4" fill="#f472b6"/>
+            {% endfor %}
+          </g>
+        </svg>
+        <div class="floats">
+          <span>5'-ATG-CCT-AAG-3'</span>
+          <span>γ.ERV</span>
+          <span>LTR / GAG / POL / ENV</span>
+          <span>Sus scrofa 11.1</span>
+          <span>Ensembl 108</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="numbers-strip" aria-label="key numbers">
+    <div class="num-card v1">
+      <div class="v" id="ns-total">1,165</div>
+      <div class="l" data-i18n="home.ns.total">Intact PERVs</div>
+      <div class="sub" data-i18n="home.ns.total.sub">γ + β across multiple breeds</div>
+    </div>
+    <div class="num-card v2">
+      <div class="v" id="ns-anno">139</div>
+      <div class="l" data-i18n="home.ns.anno">Functionally annotated</div>
+      <div class="sub" data-i18n="home.ns.anno.sub">LTR / GAG / POL / ENV + domains</div>
+    </div>
+    <div class="num-card v3">
+      <div class="v">2.4 GB</div>
+      <div class="l" data-i18n="home.ns.ref">Reference genome</div>
+      <div class="sub">Sus scrofa 11.1 (Ensembl 108)</div>
+    </div>
+    <div class="num-card v4">
+      <div class="v" id="ns-genes">42k+</div>
+      <div class="l" data-i18n="home.ns.genes">Indexed gene loci</div>
+      <div class="sub" data-i18n="home.ns.genes.sub">All transcripts + exons</div>
+    </div>
+  </section>
+
+  <section class="home-section">
+    <div class="section-head">
+      <h2 data-i18n="home.modules.title">Three integrated modules</h2>
+      <p class="desc" data-i18n="home.modules.desc">From population overview down to single-base sequence inspection — every layer of the PERV atlas in one portal.</p>
+    </div>
+
+    <div class="grid cols-3">
+      <article class="feature-card c1">
+        <div class="icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18"/>
+            <rect x="6" y="12" width="3" height="6" rx="1"/>
+            <rect x="11" y="8" width="3" height="10" rx="1"/>
+            <rect x="16" y="5" width="3" height="13" rx="1"/>
+          </svg>
+        </div>
+        <span class="badge" data-i18n="home.card1.tag">Section 1</span>
+        <h3 data-i18n="home.card1.title">Section 1</h3>
+        <p data-i18n="home.card1.desc">...</p>
+        <div class="meta-row">
+          <span><b>1,165</b> <span data-i18n="home.card1.m1">sequences</span></span>
+          <span><b>6</b> <span data-i18n="home.card1.m2">interactive charts</span></span>
+          <span><b>FA + XLSX</b> <span data-i18n="home.card1.m3">downloads</span></span>
+        </div>
+        <div class="actions">
+          <a class="btn" href="{{ url_for('page_overview') }}" data-i18n="home.card1.cta">Open</a>
+        </div>
+      </article>
+
+      <article class="feature-card c2">
+        <div class="icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h10"/>
+            <circle cx="18" cy="18" r="3"/>
+            <path d="M20 20l2 2"/>
+          </svg>
+        </div>
+        <span class="badge" data-i18n="home.card2.tag">Section 2</span>
+        <h3 data-i18n="home.card2.title">Section 2</h3>
+        <p data-i18n="home.card2.desc">...</p>
+        <div class="meta-row">
+          <span><b>139</b> <span data-i18n="home.card2.m1">annotated PERVs</span></span>
+          <span><b>ORF / Domain</b> <span data-i18n="home.card2.m2">tracks</span></span>
+          <span><b>DNA + Protein</b> <span data-i18n="home.card2.m3">FASTA</span></span>
+        </div>
+        <div class="actions">
+          <a class="btn" href="{{ url_for('page_browser') }}" data-i18n="home.card2.cta">Open</a>
+        </div>
+      </article>
+
+      <article class="feature-card c3">
+        <div class="icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12c4-3 14-3 18 0"/>
+            <path d="M3 12c4 3 14 3 18 0"/>
+            <path d="M12 3v18"/>
+          </svg>
+        </div>
+        <span class="badge" data-i18n="home.card3.tag">Section 3</span>
+        <h3 data-i18n="home.card3.title">Section 3</h3>
+        <p data-i18n="home.card3.desc">...</p>
+        <div class="meta-row">
+          <span><b>Sus scrofa 11.1</b></span>
+          <span><b>Ensembl 108</b> GTF</span>
+          <span><b>Alt-splicing</b> <span data-i18n="home.card3.m1">aware</span></span>
+        </div>
+        <div class="actions">
+          <a class="btn" href="{{ url_for('page_genome') }}" data-i18n="home.card3.cta">Open</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="home-section">
+    <div class="section-head">
+      <h2 data-i18n="home.flow.title">Data pipeline at a glance</h2>
+      <p class="desc" data-i18n="home.flow.desc">From raw genomic scan to interactive in-browser exploration — every step is reproducible from the source files in this repository.</p>
+    </div>
+    <div class="pipeline">
+      <div class="step">
+        <div class="num">1</div>
+        <h4 data-i18n="home.flow.s1.t">Identification</h4>
+        <p data-i18n="home.flow.s1.d">RetroTector / LTR-finder + manual curation locate 1,165 intact PERV proviruses across diverse pig breeds.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h4 data-i18n="home.flow.s2.t">Classification</h4>
+        <p data-i18n="home.flow.s2.d">Phylogenetic analysis splits γ.ERV vs β.ERV, breed groups, and computes Identity / Kimura distance / insertion time.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h4 data-i18n="home.flow.s3.t">Annotation</h4>
+        <p data-i18n="home.flow.s3.d">139 high-confidence sequences receive ORF (LTR / GAG / POL / ENV) and structural-domain annotations in BED format.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <h4 data-i18n="home.flow.s4.t">Visualization</h4>
+        <p data-i18n="home.flow.s4.d">FASTA / Excel / BED / GTF are exposed via a Flask backend and a custom igv.js front-end with rich interactivity.</p>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block body_extra %}
+<script>
+  // Live-fetch overview stats so KPIs reflect the actual loaded dataset
+  (async function () {
+    try {
+      const r = await fetch('/api/overview/stats');
+      if (!r.ok) return;
+      const d = await r.json();
+      const setText = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+      const fmt = (n) => Number(n).toLocaleString();
+      const total = d.total || 0;
+      const tc = d.type_counts || {};
+      const gamma = tc['γ.ERV'] || tc['gamma.ERV'] || 0;
+      const beta = tc['β.ERV'] || tc['beta.ERV'] || 0;
+      setText('kpi-total', fmt(total));
+      if (gamma) setText('kpi-gamma', fmt(gamma));
+      if (beta) setText('kpi-beta', fmt(beta));
+      setText('ns-total', fmt(total));
+    } catch (_) {}
+    try {
+      const r2 = await fetch('/api/sequences/pass');
+      if (r2.ok) {
+        const d2 = await r2.json();
+        const v = (d2.total || 139);
+        const fmt = (n) => Number(n).toLocaleString();
+        document.getElementById('kpi-anno').textContent = fmt(v);
+        document.getElementById('ns-anno').textContent = fmt(v);
+      }
+    } catch (_) {}
+  })();
+</script>
+{% endblock %}
